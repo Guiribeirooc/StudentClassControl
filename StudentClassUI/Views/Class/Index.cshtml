@@ -1,0 +1,103 @@
+﻿@model IEnumerable<StudentClassDomain.Models.ClassModel>
+
+@{
+    ViewData["Title"] = "Lista de Turmas";
+}
+
+<form>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Lista - Turmas</h4>
+        </div>
+        <div class="col-md-6 text-end">
+            <button asp-action="Create" title="Criar nova Turma" class="btn btn-primary btn-sn">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+    <hr />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Turma)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ano)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Turma)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ano)
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <button asp-action="Edit" asp-route-id="@item.Id" title="Editar turma" class="btn btn-primary btn-sn">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalExcluir"
+                           data-bs-cpf="@item.Id" data-bs-nome="@item.Turma"><i class="fa-solid fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
+
+<div class="modal fade" id="modalExcluir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="bi bi-trash3-fill"></i>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="divModalTexto" class="mb-3"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+
+
+                @Html.ActionLink("Excluir", "Delete", null, htmlAttributes: new { @class = "btn btn-primary"})
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+
+        var nossaModal = document.getElementById('modalExcluir')
+
+        nossaModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget
+
+            var cpf = button.getAttribute('data-bs-cpf')
+            var nome = button.getAttribute('data-bs-nome')
+
+            var modalBodyDiv = nossaModal.querySelector('.modal-body div')
+            modalBodyDiv.innerHTML = "Você confirma a exclusão de <b>" + nome + "?</b>"
+                + "<br />Não será possível resgatar esta turma após a confirmação!";
+
+            var modalFooterLink = nossaModal.querySelector('.modal-footer a')
+            modalFooterLink.href = "/Class/Delete/{id:int}";
+
+        })
+    </script>
+}

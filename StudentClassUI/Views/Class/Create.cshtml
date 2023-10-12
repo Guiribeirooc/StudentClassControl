@@ -1,0 +1,54 @@
+﻿@model StudentClassDomain.Models.ClassModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4> Cadastrar - Turma</h4>
+<hr />
+
+<form asp-action="Create">
+<div class="row">
+    <div class="col-md-12">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="Turma" class="control-label"></label>
+                    <input asp-for="Turma" class="form-control" />
+                    <span asp-validation-for="Turma" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="IdCurso" class="control-label"></label>
+                    <input asp-for="IdCurso" class="form-control" />
+                    <span asp-validation-for="IdCurso" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="Ano" class="control-label"></label>
+                    <input asp-for="Ano" class="form-control" />
+                    <span asp-validation-for="Ano" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button asp-action="Index" title="Ir para lista" class="btn btn-outline-danger float-right">< Voltar para Lista</button>
+            </div>
+            <div class="col-md-6 text-end">
+                <button type="submit" class="btn btn-danger float-right">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+      }

@@ -1,0 +1,15 @@
+﻿<form action="/Class/Edit/@Model.Id" method="post">
+    <div class="form-group">
+        <label for="turma">Turma</label>
+        <input type="text" class="form-control" id="turma" name="turma" value="@Model.Turma" />
+    </div>
+    <div class="form-group">
+        <label for="idCurso">ID Curso</label>
+        <input type="number" class="form-control" id="idCurso" name="idCurso" value="@Model.IdCurso" />
+    </div>
+    <div class="form-group">
+        <label for="ano">Ano</label>
+        <input type="number" class="form-control" id="ano" name="ano" value="@Model.Ano" />
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>

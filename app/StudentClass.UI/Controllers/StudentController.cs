@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using StudentClass.Domain.Models;
 using StudentClass.UI.Models;
@@ -8,10 +9,12 @@ namespace StudentClass.Controllers
 {
     public class StudentController : Controller
     {
+        private readonly IOptions<Database> _data;
         private readonly HttpClient _httpClient;
 
-        public StudentController(IHttpClientFactory httpClient)
+        public StudentController(IHttpClientFactory httpClient, IOptions<Database> data)
         {
+            _data = data;
             _httpClient = httpClient.CreateClient();
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

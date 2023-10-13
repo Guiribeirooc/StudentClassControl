@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using StudentClass.Domain.Models;
 using StudentClass.Domain.Models.Requests;
@@ -11,9 +12,11 @@ namespace StudentClass.Controllers
     public class RelateClassController : Controller
     {
         private readonly HttpClient _httpClient;
+        private readonly IOptions<Database> _data;
 
-        public RelateClassController(IHttpClientFactory httpClient)
+        public RelateClassController(IHttpClientFactory httpClient, IOptions<Database> data)
         {
+            _data = data;
             _httpClient = httpClient.CreateClient();
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -26,7 +29,7 @@ namespace StudentClass.Controllers
             else
                 TempData["error"] = mensagem;
 
-            HttpResponseMessage response = await _httpClient.GetAsync("https://localhost:7005/api/v1/RelateClass/Obter-Todos");
+            HttpResponseMessage response = await _httpClient.GetAsync($"{_data.Value.API_URL_BASE}RelateClass/Obter-Todos");
 
 
             if (response.IsSuccessStatusCode)
@@ -42,7 +45,7 @@ namespace StudentClass.Controllers
 
         public async Task<IActionResult> Details(int idStudent, int idClass)
         {
-            HttpResponseMessage response = await _httpClient.GetAsync($"https://localhost:7005/api/v1/RelateClass/Obter/Aluno/{idStudent}/Turma/{idClass}");
+            HttpResponseMessage response = await _httpClient.GetAsync($"{_data.Value.API_URL_BASE}RelateClass/Obter/Aluno/{idStudent}/Turma/{idClass}");
 
             if (response.IsSuccessStatusCode)
                 return View(JsonConvert.DeserializeObject<RelateClassRequest>(await response.Content.ReadAsStringAsync()));
@@ -66,7 +69,7 @@ namespace StudentClass.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    HttpResponseMessage response = await _httpClient.PostAsJsonAsync("https://localhost:7005/api/v1/RelateClass/Incluir", relateClass);
+                    HttpResponseMessage response = await _httpClient.PostAsJsonAsync($"{_data.Value.API_URL_BASE}RelateClass/Incluir", relateClass);
 
                     if (response.IsSuccessStatusCode)
                         return RedirectToAction(nameof(Index), new { mensagem = "Associação de Aluno e Turma realizado com sucesso!", sucesso = true });
@@ -88,7 +91,7 @@ namespace StudentClass.Controllers
 
         public async Task<IActionResult> Edit(int idStudent, int idClass)
         {
-            HttpResponseMessage response = await _httpClient.GetAsync($"https://localhost:7005/api/v1/RelateClass/Obter/Aluno/{idStudent}/Turma/{idClass}");
+            HttpResponseMessage response = await _httpClient.GetAsync($"{_data.Value.API_URL_BASE}RelateClass/Obter/Aluno/{idStudent}/Turma/{idClass}");
 
             if (response.IsSuccessStatusCode)
                 return View(JsonConvert.DeserializeObject<RelateClassRequest>(await response.Content.ReadAsStringAsync()));
@@ -104,7 +107,7 @@ namespace StudentClass.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    HttpResponseMessage response = await _httpClient.PutAsJsonAsync("https://localhost:7005/api/v1/RelateClass/Atualizar", relateClass);
+                    HttpResponseMessage response = await _httpClient.PutAsJsonAsync($"{_data.Value.API_URL_BASE}RelateClass/Atualizar", relateClass);
 
                     if (response.IsSuccessStatusCode)
                         return RedirectToAction(nameof(Index), new { mensagem = "Alterações feitas com sucesso!", sucesso = true });
@@ -138,11 +141,13 @@ namespace StudentClass.Controllers
             }
         }
 
-        public async Task<IActionResult> Delete(int idStudent, int idClass)
+        [HttpGet]
+        [Route("Delete/{idstudent}/{idclass}")]
+        public async Task<IActionResult> Delete(int idstudent, int idclass)
         {
             try
             {
-                HttpResponseMessage response = await _httpClient.DeleteAsync($"https://localhost:7005/api/v1/RelateClass/Deletar/Aluno/{idStudent}/Turma/{idClass}");
+                HttpResponseMessage response = await _httpClient.DeleteAsync($"{_data.Value.API_URL_BASE}RelateClass/Deletar/Aluno/{idstudent}/Turma/{idclass}");
 
                 if (response.IsSuccessStatusCode)
                     return RedirectToAction(nameof(Index), new { mensagem = "Exclusão realizada com sucesso!", sucesso = true });
@@ -160,7 +165,7 @@ namespace StudentClass.Controllers
         {
             List<SelectListItem> lista = new();
 
-            HttpResponseMessage response = await _httpClient.GetAsync("https://localhost:7005/api/v1/Student/Obter-Todos");
+            HttpResponseMessage response = await _httpClient.GetAsync($"{_data.Value.API_URL_BASE}Student/Obter-Todos");
 
             if (response.IsSuccessStatusCode)
             {
@@ -188,7 +193,7 @@ namespace StudentClass.Controllers
         {
             List<SelectListItem> lista = new();
 
-            HttpResponseMessage response = await _httpClient.GetAsync("https://localhost:7005/api/v1/Class/Obter-Todos");
+            HttpResponseMessage response = await _httpClient.GetAsync($"{_data.Value.API_URL_BASE}Class/Obter-Todos");
 
             if (response.IsSuccessStatusCode)
             {

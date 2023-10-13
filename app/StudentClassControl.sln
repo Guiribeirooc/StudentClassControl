@@ -7,15 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "app", "app", "{9EF7AE84-D4F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E8F64B6B-41B4-4E63-90F5-EF7EBE805D97}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentClass.Api", "StudentClassApi\StudentClass.Api.csproj", "{4B206CDA-B0D8-4ABA-A64E-71803A81DB37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentClass.Api", "StudentClass.Api\StudentClass.Api.csproj", "{4B206CDA-B0D8-4ABA-A64E-71803A81DB37}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentClass.UI", "StudentClassUI\StudentClass.UI.csproj", "{7F7EF518-F90F-47C6-8DE4-F94B51AE5309}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentClass.UI", "StudentClass.UI\StudentClass.UI.csproj", "{7F7EF518-F90F-47C6-8DE4-F94B51AE5309}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentClass.Domain", "StudentClassDomain\StudentClass.Domain.csproj", "{264605F1-F70E-4646-BDD3-FB0D9ADDE934}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentClass.Domain", "StudentClass.Domain\StudentClass.Domain.csproj", "{264605F1-F70E-4646-BDD3-FB0D9ADDE934}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentClass.Infra", "StudentClassInfra\StudentClass.Infra.csproj", "{124EA04C-B516-4F7D-BD6D-A979DF4BF684}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentClass.Infra", "StudentClass.Infra\StudentClass.Infra.csproj", "{124EA04C-B516-4F7D-BD6D-A979DF4BF684}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudenteControlTests", "..\tests\StudenteControlTests\StudenteControlTests.csproj", "{7D1CD4E2-4939-4A56-8401-8B4D43D889A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudenteControlTests", "..\tests\StudenteControl.Tests\StudenteControl.Tests.csproj", "{7D1CD4E2-4939-4A56-8401-8B4D43D889A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

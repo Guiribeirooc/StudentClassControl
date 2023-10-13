@@ -65,7 +65,7 @@ namespace StudentClass.Domain.Repositories
             var sql = @$"   UPDATE aluno 
                             SET nome = ISNULL(@Nome,nome), 
                                 usuario = ISNULL(@Usuario,usuario), 
-                                senha = ISNULL(@Senha,senha), 
+                                senha = ISNULL(@Senha,senha)
                             WHERE id = @Id";
 
             var param = new DynamicParameters();

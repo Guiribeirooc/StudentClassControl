@@ -1,15 +1,18 @@
 ﻿using StudentClass.Domain.Interfaces;
 using StudentClass.Domain.Models;
+using StudentClass.Domain.Repositories;
 
 namespace StudentClass.Domain.Services
 {
     public class ClassService : IClassService
     {
         private readonly IClassRepository _classRepository;
+        private readonly IRelateClassRepository _relateClassRepository;
 
-        public ClassService(IClassRepository classRepository)
+        public ClassService(IClassRepository classRepository, IRelateClassRepository relateClassRepository)
         {
             _classRepository = classRepository;
+            _relateClassRepository = relateClassRepository;
         }
 
         public RequestResult Add(ClassModel classModel)
@@ -28,6 +31,15 @@ namespace StudentClass.Domain.Services
 
         public RequestResult Delete(int id)
         {
+            var relate = _relateClassRepository.GetAll();
+            if(relate != null && relate.Count > 0)
+            {
+                relate.Where(x => x.IdClass == id).ToList().ForEach(y =>
+                {
+                    _relateClassRepository.Delete(y.IdStudent, y.IdClass);
+                });
+            }      
+
             var result = _classRepository.Get(id);
 
             if (result == null)

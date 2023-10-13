@@ -93,7 +93,10 @@ namespace StudentClass.UI.Controllers
             HttpResponseMessage response = await _httpClient.GetAsync($"https://localhost:7005/api/v1/Class/Obter/{id}");
 
             if (response.IsSuccessStatusCode)
-                return View(JsonConvert.DeserializeObject<ClassModel>(await response.Content.ReadAsStringAsync()));
+            {
+                var result = JsonConvert.DeserializeObject<ClassModel>(await response.Content.ReadAsStringAsync());
+                return View(result);
+            }
             else
                 throw new Exception(response.ReasonPhrase);
         }

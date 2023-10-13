@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentClass.Domain", "app\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentClass.Infra", "app\StudentClass.Infra\StudentClass.Infra.csproj", "{124EA04C-B516-4F7D-BD6D-A979DF4BF684}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudenteControlTests", "tests\StudenteControl.UnitTests\StudenteControl.UnitTests.csproj", "{7D1CD4E2-4939-4A56-8401-8B4D43D889A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentClassControl.UnitTests", "tests\StudentClassControl.UnitTests\StudentClassControl.UnitTests.csproj", "{7D1CD4E2-4939-4A56-8401-8B4D43D889A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

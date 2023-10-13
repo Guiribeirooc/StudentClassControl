@@ -10,10 +10,8 @@ namespace StudentClass.Domain.Helpers
         {
             int score = 0;
 
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
             if (password.Length < 1)
                 return PasswordScore.Blank;
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
             if (password.Length < 4)
                 return PasswordScore.VeryWeak;
 

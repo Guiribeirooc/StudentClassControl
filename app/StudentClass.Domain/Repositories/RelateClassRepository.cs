@@ -55,7 +55,12 @@ namespace StudentClass.Domain.Repositories
 
         public List<RelateClassModel> GetAll()
         {
-            var sql = @$"SELECT * FROM aluno_turma";
+            var sql = @$"SELECT aluno_id AS IdStudent,
+                         turma_id AS IdClass
+                         FROM aluno_turma
+
+                         INNER JOIN aluno ON aluno.id = aluno_turma.aluno_id
+                         INNER JOIN turma ON turma.id = aluno_turma.turma_id";
             return conn.Query<RelateClassModel>(sql: sql).ToList();
         }
     }

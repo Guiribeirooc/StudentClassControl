@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using StudentClass.Domain.Models;
-using StudentClassUI.Models;
+using StudentClass.UI.Models;
 using System.Net.Http.Headers;
 
-namespace StudentClassUI.Controllers
+namespace StudentClass.UI.Controllers
 {
     public class ClassController : Controller
     {

@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StudentClass.Infra\StudentClass.Infra.csproj" />
-    <ProjectReference Include="..\StudentClassInfra\StudentClass.Infra.csproj" />
   </ItemGroup>
 
 </Project>

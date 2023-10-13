@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using StudentClass.Domain.Models;
 using StudentClass.Domain.Models.Requests;
-using StudentClassUI.Models;
+using StudentClass.UI.Models;
 using System.Net.Http.Headers;
 
 namespace StudentClass.Controllers

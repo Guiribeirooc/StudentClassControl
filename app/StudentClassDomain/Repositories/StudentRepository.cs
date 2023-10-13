@@ -36,9 +36,10 @@ namespace StudentClassDomain.Repositories
 
         public StudentModel? Get(int id)
         {
-            var sql = @$"SELECT nome as Nome,
-                                usuario as Usuario,
-                                senha as Senha,
+            var sql = @$"SELECT 
+                         nome as Nome,
+                         usuario as Usuario,
+                         senha as Senha
                          FROM aluno
                          WHERE id = @Id";
 
@@ -50,9 +51,11 @@ namespace StudentClassDomain.Repositories
 
         public List<StudentModel> GetAll()
         {
-            var sql = @$"SELECT nome as Nome,
-                                usuario as Usuario,
-                                senha as Senha,
+            var sql = @$"SELECT 
+                         id AS Id,
+                         nome as Nome,
+                         usuario as Usuario,
+                         senha as Senha
                          FROM aluno";
             return conn.Query<StudentModel>(sql: sql).ToList();
         }

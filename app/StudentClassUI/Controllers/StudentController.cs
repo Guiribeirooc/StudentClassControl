@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using StudentClassDomain.Models;
+using StudentClassUI.Models;
 using System.Net.Http.Headers;
 
 namespace StudentClass.Controllers
@@ -26,15 +27,26 @@ namespace StudentClass.Controllers
             HttpResponseMessage response = await _httpClient.GetAsync("https://localhost:7005/api/v1/Student/Obter-Todos");
 
             if (response.IsSuccessStatusCode)
-                return View(JsonConvert.DeserializeObject<IEnumerable<StudentModel>>(await response.Content.ReadAsStringAsync()));
+            {
+                var result = JsonConvert.DeserializeObject<StudentResponse>(await response.Content.ReadAsStringAsync());
+                return View(result?.Dados);
+            }
             else
                 throw new Exception(response.ReasonPhrase);
 
         }
 
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            HttpResponseMessage response = await _httpClient.GetAsync($"https://localhost:7005/api/v1/Student/Obter/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = JsonConvert.DeserializeObject<StudentResponse>(await response.Content.ReadAsStringAsync());
+                return View(result?.Dados);
+            }
+            else
+                throw new Exception(response.ReasonPhrase);
         }
 
         public ActionResult Create()
@@ -72,7 +84,7 @@ namespace StudentClass.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            HttpResponseMessage response = await _httpClient.GetAsync($"https://localhost:7005/api/v1/Student/Obter/{id:int}");
+            HttpResponseMessage response = await _httpClient.GetAsync($"https://localhost:7005/api/v1/Student/Obter/{id}");
 
             if (response.IsSuccessStatusCode)
                 return View(JsonConvert.DeserializeObject<StudentModel>(await response.Content.ReadAsStringAsync()));
@@ -108,13 +120,11 @@ namespace StudentClass.Controllers
             }
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                HttpResponseMessage response = await _httpClient.DeleteAsync($"https://localhost:7005/api/v1/Student/Deletar/{id:int}");
+                HttpResponseMessage response = await _httpClient.DeleteAsync($"https://localhost:7005/api/v1/Student/Deletar/{id}");
 
                 if (response.IsSuccessStatusCode)
                     return RedirectToAction(nameof(Index), new { mensagem = "Exclusão realizada com sucesso!", sucesso = true });
@@ -124,6 +134,20 @@ namespace StudentClass.Controllers
             catch (Exception ex)
             {
                 TempData["error"] = "Algum erro aconteceu - " + ex.Message;
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
                 return View();
             }
         }

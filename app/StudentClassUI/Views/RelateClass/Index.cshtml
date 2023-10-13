@@ -1,5 +1,96 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<StudentClassDomain.Models.RelateClassModel>
+
 @{
+    ViewData["Title"] = "Relação de Alunos e Turmas";
+}
+
+<form>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Lista</h4>
+        </div>
+        <div class="col-md-6 text-end">
+            <button asp-action="Create" title="Criar nova Turma" class="btn btn-primary btn-sn">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+    <hr />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdStudent)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdClass)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdStudent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdClass)
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <button asp-action="Edit" asp-route-id="@item.IdStudent" title="Editar Aluno" class="btn btn-primary btn-sn">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </td>
+                    <td>
+                        <a asp-action="#" class="btn btn-outline-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-id="@item.IdStudent" data-bs-nome="@item.IdStudent">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Excluir associação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="divModalTexto" class="mb-3">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <a asp-controller="#" asp-action="Delete" class="btn btn-outline-danger m-1">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script type="text/javascript">
+
+    var exampleModal = document.getElementById('exampleModal')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+
+        var button = event.relatedTarget
+
+        var id = button.getAttribute('data-bs-id')
+        var descricao = button.getAttribute('data-bs-nome')
+
+        var modalBodyDiv = exampleModal.querySelector('.modal-body div')
+
+        modalBodyDiv.innerHTML = "Deseja confirmar a exclusão de <b>" + descricao + "?</b>"
+            + "<br /> Não será possivél recuperar o registro após a exclusão do mesmo!"
+
+        var modalFooterDiv = exampleModal.querySelector('.modal-footer a')
+        modalFooterDiv.href = "/RelateClass/Delete?Id=" + id
+    })
+
+</script>
 }

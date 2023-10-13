@@ -27,15 +27,32 @@ namespace StudentClassUI.Controllers
             HttpResponseMessage response = await _httpClient.GetAsync("https://localhost:7005/api/v1/Class/Obter-Todos");
 
             if (response.IsSuccessStatusCode)
-                return View(JsonConvert.DeserializeObject<IEnumerable<ClassResponse>>(await response.Content.ReadAsStringAsync()));
+            {
+                var result = JsonConvert.DeserializeObject<ClassResponse>(await response.Content.ReadAsStringAsync());
+                return View(result?.Dados);
+
+            }
             else
                 throw new Exception(response.ReasonPhrase);
 
         }
 
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id, string? mensagem, bool sucesso = true)
         {
-            return View();
+            if (sucesso)
+                TempData["success"] = mensagem;
+            else
+                TempData["error"] = mensagem;
+
+            HttpResponseMessage response = await _httpClient.GetAsync($"https://localhost:7005/api/v1/Class/Obter/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = JsonConvert.DeserializeObject<ClassResponse>(await response.Content.ReadAsStringAsync());
+                return View(result?.Dados);
+            }
+            else
+                throw new Exception(response.ReasonPhrase);
         }
 
         public ActionResult Create()
@@ -73,7 +90,7 @@ namespace StudentClassUI.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            HttpResponseMessage response = await _httpClient.GetAsync($"https://localhost:7005/api/v1/Class/Obter/{id:int}");
+            HttpResponseMessage response = await _httpClient.GetAsync($"https://localhost:7005/api/v1/Class/Obter/{id}");
 
             if (response.IsSuccessStatusCode)
                 return View(JsonConvert.DeserializeObject<ClassModel>(await response.Content.ReadAsStringAsync()));
@@ -109,13 +126,11 @@ namespace StudentClassUI.Controllers
             }
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                HttpResponseMessage response = await _httpClient.DeleteAsync($"https://localhost:7005/api/v1/Class/Deletar/{id:int}");
+                HttpResponseMessage response = await _httpClient.DeleteAsync($"https://localhost:7005/api/v1/Class/Deletar/{id}");
 
                 if (response.IsSuccessStatusCode)
                     return RedirectToAction(nameof(Index), new { mensagem = "Exclusão realizada com sucesso!", sucesso = true });
@@ -125,6 +140,20 @@ namespace StudentClassUI.Controllers
             catch (Exception ex)
             {
                 TempData["error"] = "Algum erro aconteceu - " + ex.Message;
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
                 return View();
             }
         }

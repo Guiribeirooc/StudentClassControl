@@ -22,13 +22,13 @@ namespace StudentClassDomain.Services
 
         public RequestResult Add(RelateClassRequest request)
         {
-            var getStudent = _studentRepository.Get(request.IdAluno);
-            var getClass = _classRepository.Get(request.IdTurma);
+            var getStudent = _studentRepository.Get(request.IdStudent);
+            var getClass = _classRepository.Get(request.IdClass);
 
             if (getStudent == null && getClass == null)
                 return new RequestResult(false, "Aluno ou turma não foram encontrados.");
 
-            var getRelateClass = _relateClassRepository.Get(request.IdAluno, request.IdTurma);
+            var getRelateClass = _relateClassRepository.Get(request.IdStudent, request.IdClass);
 
             if (getRelateClass != null)
                 return new RequestResult(false, "Aluno já está associado a turma selecionada.");

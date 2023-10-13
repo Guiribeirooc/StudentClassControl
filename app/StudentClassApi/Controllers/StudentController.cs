@@ -5,7 +5,6 @@ using StudentClassDomain.Models;
 namespace StudentClassAPI.Controllers
 {
     [Route("api/v1/[controller]")]
-
     public class StudentController : Controller
     {
         private readonly IStudentService _studentService;

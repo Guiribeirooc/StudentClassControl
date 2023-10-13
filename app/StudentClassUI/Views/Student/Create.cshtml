@@ -28,8 +28,9 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Senha</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+                        <label asp-for="Senha" class="control-label"></label>
+                        <input asp-for="Senha" type="password" class="form-control" />
+                        <span asp-validation-for="Senha" class="text-danger"></span>
                     </div>
                 </div>
             </div>

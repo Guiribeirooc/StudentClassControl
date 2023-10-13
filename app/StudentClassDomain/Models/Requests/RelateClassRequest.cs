@@ -2,7 +2,7 @@
 {
     public class RelateClassRequest
     {
-        public int IdAluno { get; set; }
-        public int IdTurma { get; set; }
+        public int IdStudent { get; set; }
+        public int IdClass { get; set; }
     }
 }

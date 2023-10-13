@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Controle FIAP</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
-    <link rel="stylesheet" href="~/lib/toastr.js/toastr.css" />
+    <link rel="stylesheet" href="~/font-awesome/css/all.css" />
+    <link rel="stylesheet" href="~/toastr.js/toastr.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Houseasy.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/StudentClassControl.styles.css" asp-append-version="true" />
 </head>
 <body>
     <input type="hidden" id="success" value="@TempData["success"]" />
@@ -33,12 +33,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="btn btn-outline-light border-0 me-1" asp-area="" asp-controller="Class" asp-action="Index">
-                                <i class="fa-solid fa-people-carry-box"></i> Turmas
+                                <i class="fa-solid fa-landmark"></i> Turmas
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="btn btn-outline-light border-0 me-1" asp-area="" asp-controller="RelateClass" asp-action="Index">
-                                <i class="fa-solid fa-screwdriver-wrench"></i> Relação de Turmas e Alunos
+                                <i class="fa-solid fa-list"></i> Relação de Turmas e Alunos
                             </a>
                         </li>
                     </ul>
@@ -59,9 +59,8 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/inputmask/dist/jquery.inputmask.js"></script>
-    <script src="~/lib/font-awesome/js/all.js"></script>
-    <script src="~/lib/toastr.js/toastr.min.js"></script>
+    <script src="~/font-awesome/js/all.js"></script>
+    <script src="~/toastr.js/toastr.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

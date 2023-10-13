@@ -15,11 +15,11 @@ namespace StudentClassDomain.Repositories
         public void Add(RelateClassRequest request)
         {
             var sql = @$"INSERT INTO aluno_turma 
-                         VALUES (@IdAluno, @IdTurma)";
+                         VALUES (@IdStudent, @IdClass)";
 
             var param = new DynamicParameters();
-            param.Add("@IdAluno", request.IdAluno);
-            param.Add("@IdTurma", request.IdTurma);
+            param.Add("@IdStudent", request.IdStudent);
+            param.Add("@IdClass", request.IdClass);
 
             conn.Execute(sql: sql, param: param);
         }
@@ -27,12 +27,12 @@ namespace StudentClassDomain.Repositories
         public void Delete(int idStudent, int idClass)
         {
             var sql = @$"DELETE FROM aluno_turma 
-                         WHERE aluno_id = @IdAluno 
-                         AND turma_id = @IdTurma";
+                         WHERE aluno_id = @IdStudent 
+                         AND turma_id = @IdClass";
 
             var param = new DynamicParameters();
-            param.Add("@IdAluno", idStudent);
-            param.Add("@IdTurma", idClass);
+            param.Add("@IdStudent", idStudent);
+            param.Add("@IdClass", idClass);
 
             conn.Execute(sql: sql, param: param);
         }
@@ -40,15 +40,15 @@ namespace StudentClassDomain.Repositories
         public RelateClassModel? Get(int idStudent, int idClass)
         {
             var sql = @$"SELECT 
-                         aluno_id AS IdAluno,
-                         turma_id AS IdTurma
+                         aluno_id AS IdStudent,
+                         turma_id AS IdClass
                          FROM aluno_turma
-                         WHERE aluno_id = @IdAluno 
-                         AND turma_id = @IdTurma ";
+                         WHERE aluno_id = @IdStudent 
+                         AND turma_id = @IdClass ";
 
             var param = new DynamicParameters();
-            param.Add("@IdAluno", idStudent);
-            param.Add("@IdTurma", idClass);
+            param.Add("@IdStudent", idStudent);
+            param.Add("@IdClass", idClass);
 
             return conn.QueryFirstOrDefault<RelateClassModel>(sql: sql, param: param);
         }

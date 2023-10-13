@@ -56,8 +56,20 @@ namespace StudentClass.Domain.Services
 
         public RequestResult GetAll()
         {
-            var result = _relateClassRepository.GetAll();
-            return new RequestResult(true, "", result);
+            var relateClass = _relateClassRepository.GetAll();
+            var students = _studentRepository.GetAll();
+            var classes = _classRepository.GetAll();
+
+            if(relateClass != null && relateClass.Count > 0)
+            {
+                relateClass.ForEach(x =>
+                {
+                    x.Student= students.FirstOrDefault(y => y.Id == x.IdStudent);
+                    x.Class = classes.FirstOrDefault(y => y.Id == x.IdClass);
+                });
+            }
+
+            return new RequestResult(true, "", relateClass);
         }
         
     }

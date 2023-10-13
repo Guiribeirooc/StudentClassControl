@@ -37,24 +37,6 @@ namespace StudentClass.UI.Controllers
 
         }
 
-        public async Task<IActionResult> Details(int id, string? mensagem, bool sucesso = true)
-        {
-            if (sucesso)
-                TempData["success"] = mensagem;
-            else
-                TempData["error"] = mensagem;
-
-            HttpResponseMessage response = await _httpClient.GetAsync($"https://localhost:7005/api/v1/Class/Obter/{id}");
-
-            if (response.IsSuccessStatusCode)
-            {
-                var result = JsonConvert.DeserializeObject<ClassResponse>(await response.Content.ReadAsStringAsync());
-                return View(result?.Dados);
-            }
-            else
-                throw new Exception(response.ReasonPhrase);
-        }
-
         public ActionResult Create()
         {
             return View();
@@ -143,20 +125,6 @@ namespace StudentClass.UI.Controllers
             catch (Exception ex)
             {
                 TempData["error"] = "Algum erro aconteceu - " + ex.Message;
-                return View();
-            }
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
                 return View();
             }
         }

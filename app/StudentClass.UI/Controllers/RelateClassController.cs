@@ -26,25 +26,15 @@ namespace StudentClass.Controllers
             else
                 TempData["error"] = mensagem;
 
-            HttpResponseMessage responseClass = await _httpClient.GetAsync("https://localhost:7005/api/v1/Class/Obter-Todos");
-            HttpResponseMessage responseStudent = await _httpClient.GetAsync("https://localhost:7005/api/v1/Student/Obter-Todos");
-
-            if (responseClass.IsSuccessStatusCode && responseStudent.IsSuccessStatusCode)
-            {
-                var resultClass = JsonConvert.DeserializeObject<ClassResponse>(await responseClass.Content.ReadAsStringAsync());
-                var resultStudent = JsonConvert.DeserializeObject<StudentResponse>(await responseStudent.Content.ReadAsStringAsync());
-
-                StudentClassResponse studentClassResponse = new StudentClassResponse();
-                studentClassResponse.Student = resultStudent?.Dados;
-                studentClassResponse.Class = resultClass?.Dados;
-
-                return View(studentClassResponse);
-            }
-
             HttpResponseMessage response = await _httpClient.GetAsync("https://localhost:7005/api/v1/RelateClass/Obter-Todos");
 
+
             if (response.IsSuccessStatusCode)
-                return View(JsonConvert.DeserializeObject<List<RelateClassModel>>(await response.Content.ReadAsStringAsync()));
+            {
+                var result = JsonConvert.DeserializeObject<RelateClassResponse>(await response.Content.ReadAsStringAsync());
+
+                return View(result?.Dados);
+            }
             else
                 throw new Exception(response.ReasonPhrase);
 
@@ -136,11 +126,23 @@ namespace StudentClass.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         public async Task<IActionResult> Delete(int idStudent, int idClass)
         {
             try
             {
-                HttpResponseMessage response = await _httpClient.DeleteAsync($"https://localhost:7005/api/v1/RelateClass/Deletar/Aluno/{idStudent:int}/Turma/{idClass:int}");
+                HttpResponseMessage response = await _httpClient.DeleteAsync($"https://localhost:7005/api/v1/RelateClass/Deletar/Aluno/{idStudent}/Turma/{idClass}");
 
                 if (response.IsSuccessStatusCode)
                     return RedirectToAction(nameof(Index), new { mensagem = "Exclusão realizada com sucesso!", sucesso = true });

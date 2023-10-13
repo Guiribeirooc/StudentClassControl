@@ -36,19 +36,6 @@ namespace StudentClass.Controllers
 
         }
 
-        public async Task<IActionResult> Details(int id)
-        {
-            HttpResponseMessage response = await _httpClient.GetAsync($"https://localhost:7005/api/v1/Student/Obter/{id}");
-
-            if (response.IsSuccessStatusCode)
-            {
-                var result = JsonConvert.DeserializeObject<StudentResponse>(await response.Content.ReadAsStringAsync());
-                return View(result?.Dados);
-            }
-            else
-                throw new Exception(response.ReasonPhrase);
-        }
-
         public ActionResult Create()
         {
             return View();
@@ -134,20 +121,6 @@ namespace StudentClass.Controllers
             catch (Exception ex)
             {
                 TempData["error"] = "Algum erro aconteceu - " + ex.Message;
-                return View();
-            }
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
                 return View();
             }
         }

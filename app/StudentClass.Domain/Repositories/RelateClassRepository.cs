@@ -44,7 +44,7 @@ namespace StudentClass.Domain.Repositories
                          turma_id AS IdClass
                          FROM aluno_turma
                          WHERE aluno_id = @IdStudent 
-                         AND turma_id = @IdClass ";
+                         AND turma_id = @IdClass";
 
             var param = new DynamicParameters();
             param.Add("@IdStudent", idStudent);
@@ -57,10 +57,8 @@ namespace StudentClass.Domain.Repositories
         {
             var sql = @$"SELECT aluno_id AS IdStudent,
                          turma_id AS IdClass
-                         FROM aluno_turma
+                         FROM aluno_turma";
 
-                         INNER JOIN aluno ON aluno.id = aluno_turma.aluno_id
-                         INNER JOIN turma ON turma.id = aluno_turma.turma_id";
             return conn.Query<RelateClassModel>(sql: sql).ToList();
         }
     }

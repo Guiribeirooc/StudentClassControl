@@ -1,15 +1,55 @@
-﻿<form action="/Class/Edit/@Model.Id" method="post">
-    <div class="form-group">
-        <label for="turma">Turma</label>
-        <input type="text" class="form-control" id="turma" name="turma" value="@Model.Turma" />
+﻿@model StudentClassDomain.Models.ClassModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h4> Editar - Turmas</h4>
+<hr />
+
+<form asp-action="Edit">
+    <div class="row">
+        <div class="col-md-12">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Turma" class="control-label"></label>
+                        <input asp-for="Turma" class="form-control" />
+                        <span asp-validation-for="Turma" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="IdCurso" class="control-label"></label>
+                        <input asp-for="IdCurso" class="form-control" />
+                        <span asp-validation-for="IdCurso" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Ano" class="control-label"></label>
+                        <input asp-for="Ano" class="form-control" />
+                        <span asp-validation-for="Ano" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <button asp-action="Index" title="Ir para lista" class="btn btn-outline-danger float-right">< Voltar para Lista</button>
+                </div>
+                <div class="col-md-6 text-end">
+                    <button type="submit" class="btn btn-danger float-right">Confirmar</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="idCurso">ID Curso</label>
-        <input type="number" class="form-control" id="idCurso" name="idCurso" value="@Model.IdCurso" />
-    </div>
-    <div class="form-group">
-        <label for="ano">Ano</label>
-        <input type="number" class="form-control" id="ano" name="ano" value="@Model.Ano" />
-    </div>
-    <button type="submit" class="btn btn-primary">Salvar</button>
 </form>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            document.getElementById("Id").readOnly = true;
+        });
+    </script>
+}

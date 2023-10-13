@@ -115,7 +115,7 @@ namespace StudentClassUI.Controllers
         {
             try
             {
-                HttpResponseMessage response = await _httpClient.DeleteAsync($"https://localhost:7005/api/v1/Class/Delete/{id:int}");
+                HttpResponseMessage response = await _httpClient.DeleteAsync($"https://localhost:7005/api/v1/Class/Deletar/{id:int}");
 
                 if (response.IsSuccessStatusCode)
                     return RedirectToAction(nameof(Index), new { mensagem = "Exclusão realizada com sucesso!", sucesso = true });

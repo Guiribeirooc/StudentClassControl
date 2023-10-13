@@ -1,29 +1,34 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Net.Http.Headers;
 
 namespace StudentClass.Controllers
 {
     public class RelateClassController : Controller
     {
-        // GET: RelateClassController
+        private readonly HttpClient _httpClient;
+
+        public RelateClassController(IHttpClientFactory httpClient)
+        {
+            _httpClient = httpClient.CreateClient();
+            _httpClient.DefaultRequestHeaders.Accept.Clear();
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: RelateClassController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: RelateClassController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: RelateClassController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -38,13 +43,11 @@ namespace StudentClass.Controllers
             }
         }
 
-        // GET: RelateClassController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: RelateClassController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -59,13 +62,11 @@ namespace StudentClass.Controllers
             }
         }
 
-        // GET: RelateClassController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: RelateClassController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

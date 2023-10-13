@@ -71,10 +71,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-
-
                 @Html.ActionLink("Excluir", "Delete", null, htmlAttributes: new { @class = "btn btn-primary"})
-
             </div>
         </div>
     </div>
@@ -97,7 +94,6 @@
 
             var modalFooterLink = nossaModal.querySelector('.modal-footer a')
             modalFooterLink.href = "/Class/Delete/{id:int}";
-
         })
     </script>
 }

@@ -1,6 +1,5 @@
 ﻿using StudentClass.Domain.Interfaces;
 using StudentClass.Domain.Models;
-using StudentClass.Domain.Repositories;
 
 namespace StudentClass.Domain.Services
 {

@@ -71,6 +71,5 @@ namespace StudentClass.Domain.Services
 
             return new RequestResult(true, "", relateClass);
         }
-        
     }
 }

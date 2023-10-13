@@ -1,9 +1,9 @@
 ﻿using Dapper;
-using StudentClassDomain.Interfaces;
-using StudentClassDomain.Models;
+using StudentClass.Domain.Interfaces;
+using StudentClass.Domain.Models;
 using StudentClassInfra.Configuration;
 
-namespace StudentClassDomain.Repositories
+namespace StudentClass.Domain.Repositories
 {
     public class StudentRepository : BaseRepository, IStudentRepository
     {

@@ -1,4 +1,4 @@
-﻿namespace StudentClassDomain.Models.Requests
+﻿namespace StudentClass.Domain.Models.Requests
 {
     public class RelateClassRequest
     {

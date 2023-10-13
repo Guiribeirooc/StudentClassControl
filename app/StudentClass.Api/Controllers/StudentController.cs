@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using StudentClassDomain.Interfaces;
-using StudentClassDomain.Models;
+using StudentClass.Domain.Interfaces;
+using StudentClass.Domain.Models;
 
-namespace StudentClassAPI.Controllers
+namespace StudentClass.API.Controllers
 {
     [Route("api/v1/[controller]")]
     public class StudentController : Controller

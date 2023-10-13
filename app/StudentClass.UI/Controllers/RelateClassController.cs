@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
-using StudentClassDomain.Models;
-using StudentClassDomain.Models.Requests;
+using StudentClass.Domain.Models;
+using StudentClass.Domain.Models.Requests;
 using StudentClassUI.Models;
 using System.Net.Http.Headers;
 

@@ -1,4 +1,4 @@
-﻿namespace StudentClassDomain.Enums
+﻿namespace StudentClass.Domain.Enums
 {
     public enum PasswordScore
     {

@@ -1,7 +1,7 @@
-﻿using StudentClassDomain.Models;
-using StudentClassDomain.Models.Requests;
+﻿using StudentClass.Domain.Models;
+using StudentClass.Domain.Models.Requests;
 
-namespace StudentClassDomain.Interfaces
+namespace StudentClass.Domain.Interfaces
 {
     public interface IRelateClassRepository
     {

@@ -1,8 +1,8 @@
-﻿using StudentClassDomain.Interfaces;
-using StudentClassDomain.Models;
-using StudentClassDomain.Models.Requests;
+﻿using StudentClass.Domain.Interfaces;
+using StudentClass.Domain.Models;
+using StudentClass.Domain.Models.Requests;
 
-namespace StudentClassDomain.Services
+namespace StudentClass.Domain.Services
 {
     public class RelateClassService : IRelateClassService
     {

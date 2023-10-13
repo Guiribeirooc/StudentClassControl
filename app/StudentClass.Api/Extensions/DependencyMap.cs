@@ -1,6 +1,7 @@
-﻿using StudentClassDomain.Interfaces;
+﻿using StudentClass.Domain.Interfaces;
+using StudentClass.Domain.Repositories;
+using StudentClass.Domain.Services;
 using StudentClassDomain.Repositories;
-using StudentClassDomain.Services;
 using StudentClassInfra.Configuration;
 
 namespace StudentClassApi.Extensions
@@ -11,7 +12,9 @@ namespace StudentClassApi.Extensions
         {
             services.AddSingleton<IConnectionConfig, ConnectionConfig>(sp =>
             {
+#pragma warning disable CS8604 // Possible null reference argument.
                 return new(Environment.GetEnvironmentVariable("SQLSERVER_CONNECTIONSTRING"));
+#pragma warning restore CS8604 // Possible null reference argument.
             });
 
             services.AddScoped<IStudentService, StudentService>();

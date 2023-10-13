@@ -1,6 +1,6 @@
-﻿using StudentClassDomain.Models;
+﻿using StudentClass.Domain.Models;
 
-namespace StudentClassUI.Models
+namespace StudentClass.UI.Models
 {
     public class StudentClassResponse
     {

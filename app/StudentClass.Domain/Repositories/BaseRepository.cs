@@ -2,7 +2,7 @@
 using StudentClassInfra.Configuration;
 using System.Data.SqlClient;
 
-namespace StudentClassDomain.Repositories
+namespace StudentClass.Domain.Repositories
 {
     public class BaseRepository : IBaseRepository
     {
@@ -10,7 +10,9 @@ namespace StudentClassDomain.Repositories
         protected SqlConnection conn;
         protected string Connection { get; }
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public BaseRepository(IConnectionConfig connectionConfig)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             Connection = connectionConfig.GetConnectionString();
             conn = new SqlConnection(Connection);

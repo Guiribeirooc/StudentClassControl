@@ -1,4 +1,4 @@
-﻿namespace StudentClassDomain.Models
+﻿namespace StudentClass.Domain.Models
 {
     public class RelateClassModel
     {

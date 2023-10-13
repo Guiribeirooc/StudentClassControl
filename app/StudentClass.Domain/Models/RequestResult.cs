@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.Text.Json.Serialization;
-
-namespace StudentClassDomain.Models
+﻿namespace StudentClass.Domain.Models
 {
     public class RequestResult
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using StudentClassDomain.Models;
+using StudentClass.Domain.Models;
 using StudentClassUI.Models;
 using System.Net.Http.Headers;
 

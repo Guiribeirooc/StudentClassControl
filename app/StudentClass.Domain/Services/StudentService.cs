@@ -1,8 +1,8 @@
-﻿using StudentClassDomain.Helpers;
-using StudentClassDomain.Interfaces;
-using StudentClassDomain.Models;
+﻿using StudentClass.Domain.Helpers;
+using StudentClass.Domain.Interfaces;
+using StudentClass.Domain.Models;
 
-namespace StudentClassDomain.Services
+namespace StudentClass.Domain.Services
 {
     public class StudentService : IStudentService
     {
@@ -21,7 +21,9 @@ namespace StudentClassDomain.Services
             if (passwordScore != Enums.PasswordScore.Strong && passwordScore != Enums.PasswordScore.VeryStrong)
                 return new RequestResult(true, "Senha deve conter no mínimo 8 caracteres, sendo 1 letra maiúscula, 1 letra minúscula, 1 número e 1 caractere especial.");
 
+#pragma warning disable CS8604 // Possible null reference argument.
             studentModel.Senha = passwordAdvisor.Hash(studentModel.Senha);
+#pragma warning restore CS8604 // Possible null reference argument.
 
             _studentRepository.Add(studentModel);
             return new RequestResult(true, "Aluno incluído com sucesso.");
@@ -66,7 +68,9 @@ namespace StudentClassDomain.Services
             if (passwordScore != Enums.PasswordScore.Strong && passwordScore != Enums.PasswordScore.VeryStrong)
                 return new RequestResult(true, "Senha deve conter no mínimo 8 caracteres, sendo 1 letra maiúscula, 1 letra minúscula, 1 número e 1 caractere especial.");
 
+#pragma warning disable CS8604 // Possible null reference argument.
             studentModel.Senha = passwordAdvisor.Hash(studentModel.Senha);
+#pragma warning restore CS8604 // Possible null reference argument.
 
             _studentRepository.Update(studentModel);
             return new RequestResult(true, "Aluno atualizado com sucesso.");

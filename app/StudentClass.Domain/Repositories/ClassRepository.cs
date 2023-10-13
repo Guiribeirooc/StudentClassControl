@@ -1,6 +1,7 @@
 ﻿using Dapper;
-using StudentClassDomain.Interfaces;
-using StudentClassDomain.Models;
+using StudentClass.Domain.Interfaces;
+using StudentClass.Domain.Models;
+using StudentClass.Domain.Repositories;
 using StudentClassInfra.Configuration;
 
 namespace StudentClassDomain.Repositories

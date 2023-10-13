@@ -1,8 +1,8 @@
-﻿using StudentClassDomain.Enums;
+﻿using StudentClass.Domain.Enums;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace StudentClassDomain.Helpers
+namespace StudentClass.Domain.Helpers
 {
     public class PasswordAdvisor
     {
@@ -10,8 +10,10 @@ namespace StudentClassDomain.Helpers
         {
             int score = 0;
 
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             if (password.Length < 1)
                 return PasswordScore.Blank;
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
             if (password.Length < 4)
                 return PasswordScore.VeryWeak;
 

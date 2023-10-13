@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using StudentClassDomain.Interfaces;
-using StudentClassDomain.Models;
-using StudentClassDomain.Models.Requests;
+using StudentClass.Domain.Interfaces;
+using StudentClass.Domain.Models;
+using StudentClass.Domain.Models.Requests;
 
 namespace StudentClassAPI.Controllers
 {

@@ -1,7 +1,7 @@
-﻿using StudentClassDomain.Interfaces;
-using StudentClassDomain.Models;
+﻿using StudentClass.Domain.Interfaces;
+using StudentClass.Domain.Models;
 
-namespace StudentClassDomain.Services
+namespace StudentClass.Domain.Services
 {
     public class ClassService : IClassService
     {
